@@ -1,0 +1,27 @@
+/* Program an Arduino board to blink an LED at a specific interval. This project
+introduces basic embedded programming concepts and interfacing with
+hardware*/
+
+
+#include <REG51.H>  // Header file for P89C51RD2
+
+// Define P1.0 as an sbit (bit-addressable)
+sbit LED = P1^0;  // P1.0 is now referred to as 'LED'
+
+// Delay function
+void delay(unsigned int time) {
+    unsigned int i, j;
+    for (i = 0; i < time; i++) {
+        for (j = 0; j < 1275; j++);  // Inner loop creates roughly 1 ms delay
+    }
+}
+
+void main(void) {
+    while (1) {
+        LED = 1;   // Turn the LED on (assuming LED is connected to P1.0)
+        delay(500); // Delay for roughly 500 ms
+
+        LED = 0;   // Turn the LED off
+        delay(500); // Delay for roughly 500 ms
+    }
+}
